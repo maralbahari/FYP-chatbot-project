@@ -1,0 +1,170 @@
+version: "2.0"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - goodmorning
+    - goodevening
+    - good afternoon
+    - hi FSKTM
+    - hy FSKTM bot
+    - hi fast bot
+    - hey bot
+    - what's up
+    - watsup
+
+
+- intent: goodbye
+  examples: |
+    - good afternoon
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+    - see you
+    - talk to your later
+    - get back to you later
+    - ask you later
+
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+    - sure
+    - definitely
+    - yess
+    - yup
+    - yea
+    - ye
+    - yeh
+
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+    - nope
+    - nah
+
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+    - not bad
+    - so so
+    - all good
+
+
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+    - who made you?
+    - what are you?
+    - what should I call u?
+    - what shoul i call you
+    - what's your name?
+    - what can u do?
+    - what's ypur job?
+    - what's your knowledge?
+- intent: about_university
+  examples: |
+    - what is the mission of university?
+    - university mission?
+    - university vision
+    - what is university's mission?
+    - what is UM mission?
+    - UM mission?
+    - what is um mission and vision?
+    - what is um mission
+    - what is um mission?
+    - what university malaya aming for
+    - um aim
+    - UM aim
+    - um goal
+    - UM goal
+    - tell me about UM?
+    - tell me about university of malaya?
+    - about UM?
+    - about university of Malaya?
+    - univercity mission
+    - um mission
+    - uni mission
+    - UM mission
+    - UM MISSION
+    - UM VISION
+    - um vision
+    - what does um doing
+    - what is the goal of university
+    - what is the goal of university of malaya
+
+- intent: location
+  examples: |
+    - how far is um ?
+    - where is um?
+    - where is UM?
+    - where university of malaya is located?
+    - um location
+    - show me where is UM
+    - show me in map where is umiversity of malaya?
+    - uni malaya loc
+    - send me loc of university of malaya
+
+
+
+

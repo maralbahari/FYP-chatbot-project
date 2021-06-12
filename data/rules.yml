@@ -12,13 +12,3 @@ rules:
   steps:
   - intent: bot_challenge
   - action: utter_iamabot
-#- rule: Say "about location"
-#  steps:
-#    - intent: location
-#    - action: utter_loc
-#    -
-#
-#- rule: Say "about UM"
-#  steps:
-#    - intent: about_university
-#    - action: utter_aboutUM

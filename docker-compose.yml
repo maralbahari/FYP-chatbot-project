@@ -1,0 +1,21 @@
+services:
+  rasa:
+    image: rasa/rasa:2.8.8-full
+    ports:
+    - 5005:5005
+    volumes:
+    - ./:/app
+    command:
+      - run
+  action_server:
+    image: rasa/rasa-sdk:2.8.1
+    volumes:
+    -  ./actions:/app/actions
+    ports:
+    - 5055:5055
+  duckling:
+    image: rasa/duckling:latest
+    volumes:
+    - ./:/app/config.yml
+    ports:
+    - 8000:8000

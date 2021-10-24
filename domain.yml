@@ -1,46 +1,144 @@
-version: "2.0"
-
-intents:
-  - greet
-  - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
-  - bot_challenge
-  - location
-  - about_university
-
-
-responses:
-  utter_greet:
-  - text: "Hey! How are you?"
-
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://imgur.com/a/Cgdm8eu"
-
-  utter_did_that_help:
-  - text: "Did that help you?"
-
-  utter_happy:
-  - text: "Great, is there anything I can help you with?"
-
-  utter_goodbye:
-  - text: "Thanks for reaching out to us. bye"
-  utter_aboutUM:
-    - text: "A global university impacting the world. Pushing the boundaries of knowledge and nurturing aspiring leaders."
-  utter_iamabot:
-  - text: "I am a bot, developed by Maral and powered by RASA, I can help you with your questions about university for now."
-  utter_loc:
-     - text: "https://goo.gl/maps/54gcFM2riV9J6xia9"
-  utter_help:
-    - text: "how can I help you?"
-  utter_more_help:
-    - text: "Is there anything else I can help you with?"
-  utter_continue:
-    - text: "great, carry on!"
-
+version: '2.0'
+config:
+  store_entities_as_slots: true
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
+intents:
+- greet:
+    use_entities: true
+- goodbye:
+    use_entities: true
+- affirm:
+    use_entities: true
+- deny:
+    use_entities: true
+- mood_great:
+    use_entities: true
+- mood_unhappy:
+    use_entities: true
+- bot_challenge:
+    use_entities: true
+- location:
+    use_entities: true
+- about_university:
+    use_entities: true
+- my_full_name:
+    use_entities: true
+- my_passport_number:
+    use_entities: true
+- my_email:
+    use_entities: true
+- my_matric_number:
+    use_entities: ture
+- request_letters:
+    use_entities: true
+- letter_address:
+    use_entities: true
+entities:
+  - email
+  - fullname
+  - passport_number
+  - matric_number
+  - letter
+  - address
+slots:
+  email:
+    type: any
+    influence_conversation: false
+  fullname:
+    type: any
+    influence_conversation: false
+  passport_number:
+    type: any
+    influence_conversation: false
+  matric_number:
+    type: any
+    influence_conversation: false
+  letter:
+    type: any
+    influence_conversation: false
+  address:
+    type: any
+    influence_conversation: false
+responses:
+  utter_greet:
+  - text: Hello! How are you?
+  - text: Greetings dear student, how can I help you?
+  - text: Hi there! how may I assist you?
+  - text: Hello! How are you feeling?
+  utter_cheer_up:
+  - image: https://imgur.com/a/Cgdm8eu
+    text: 'Here is something to cheer you up:'
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_happy:
+  - text: Great, is there anything I can help you with?
+  utter_goodbye:
+  - text: Thanks for reaching out to us. bye
+  - text: glad that I could help. bye
+  - text: have a nice day, bye
+  utter_aboutUM:
+  - text: A global university impacting the world. Pushing the boundaries of knowledge and nurturing aspiring leaders.
+  utter_iamabot:
+  - text: I am a bot, developed by Maral and powered by RASA, I can help you with your questions about university for now.
+  utter_loc:
+  - text: https://goo.gl/maps/54gcFM2riV9J6xia9
+  utter_help:
+  - text: how can I help you?
+  utter_more_help:
+  - text: Is there anything else I can help you with?
+  utter_continue:
+  - text: great, carry on!
+  utter_ask_letter:
+  - text : "Please choose one of the options:"
+    buttons:
+     - title: "confirmation letter"
+       payload: '/request_letters{{"letter":"confirmation"}}'
+     - title: "attendance letter"
+       payload: '/request_letters{{"letter":"attendance"}}'
+     - title: "both confirmation and attendance letter"
+       payload: '/request_letters{{"letter":"both"}}'
+  utter_ask_fullname:
+    - text: "Please provide your full name"
+  utter_ask_matric_number:
+    - text: "Please provide your matric number"
+  utter_ask_passport_number:
+    - text: "Please provide your IC/passport number"
+  utter_ask_email:
+    - text: "please provide your email"
+  utter_ask_address:
+    - text: "Please provide the letter address that you wish to be send for"
+
+
+actions:
+- action_hello_world
+- validate_letter_form
+- action_send_letter
+forms:
+  letter_form:
+    required_slots:
+      letter:
+        - type: from_entity
+          entity: letter
+      fullname:
+        - type: from_entity
+          entity: fullname
+          intent: my_full_name
+      matric_number:
+        - type: from_entity
+          entity: matric_number
+          intent: my_matric_number
+      passport_number:
+        - type: from_entity
+          entity: passport_number
+          intent: my_passport_number
+      email:
+        - type: from_entity
+          entity: email
+          intent: my_email
+
+
+
+
+e2e_actions: []

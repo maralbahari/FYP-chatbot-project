@@ -23,6 +23,7 @@ nlu:
     - watsup
 
 
+
 - intent: goodbye
   examples: |
     - good afternoon
@@ -40,6 +41,10 @@ nlu:
     - talk to your later
     - get back to you later
     - ask you later
+    - nice bye
+    - great bye
+    - nice talk to you later
+
 
 - intent: affirm
   examples: |
@@ -56,6 +61,24 @@ nlu:
     - yea
     - ye
     - yeh
+    - yes pls
+    - yes thanks
+    - surely
+    - extermly
+    - 100 percent
+    - yes thanks
+    - nice yes
+    - sure nice
+    - nice thanks
+    - yes please
+    - yup please
+    - a lot
+    - so much
+    - yes great
+    - nice thanks
+
+
+
 
 
 - intent: deny
@@ -69,6 +92,10 @@ nlu:
     - not really
     - nope
     - nah
+    - no thanks
+    - no please
+    - nice no
+    - no nice
 
 - intent: mood_great
   examples: |
@@ -89,6 +116,11 @@ nlu:
     - not bad
     - so so
     - all good
+    - good
+    - not bad not good
+    - amazing
+
+
 
 
 - intent: mood_unhappy
@@ -107,6 +139,12 @@ nlu:
     - extremly sad
     - so saad
     - so sad
+    - bad
+    - upset
+    - not in the mood
+    - i had bad day
+    - bad day
+
 
 - intent: bot_challenge
   examples: |
@@ -164,6 +202,118 @@ nlu:
     - show me in map where is umiversity of malaya?
     - uni malaya loc
     - send me loc of university of malaya
+
+- intent: request_letters
+  examples: |
+    - I need a [confirmation]{"entity":"letter","value":"confirmation"} letter
+    - I need an [attendance]{"entity":"letter","value":"attendance"} letter
+    - I need a letter {"entity":"letter"}
+    - [attendance]{"entity":"letter","value":"attendance"} letter
+    - confirmation {"entity":"letter","value":"confirmation"} letter
+    - I want to request for a letter {"entity":"letter"}
+    - I need 2 letters for [attendance] {"entity":"letter","value":"attendance"} and [confirmation] {"entity":"letter","value":"confirmation"}
+    - need two letters {"entity":"letter"}
+    - need to get [attendance]{"entity":"letter","value":"attendance"} report
+    - need to get student [confirmation] {"entity":"letter","value":"confirmation"} letter
+    - student [confirmation] {"entity":"letter","value":"confirmation"} letter
+    - [attendance] {"entity":"letter","value":"attendance"} report
+    - student [status] {"entity":"letter","value":"status"}report
+- intent: my_full_name
+  examples: |
+      - I am [Maral Bahari](fullname)
+      - my name is [Sarah Sasani](fullname)
+      - my complete name is [Bader Ba Sowid](fullname)
+      - my name is [FARIBA Kalsia](fullname)
+      - this is [Ali Abassi](fullname)
+      - [Bader bin Fakher din](fullname)
+      - [Jack Ong Min so] (fullname)
+      - [Roksana](fullname) is my name
+      - [Samira](fullname) is my name
+      - [HOSSEIN BAHA](fullname) is my name
+      - [tashfia shamim](fullname)
+      - [Erfan Shahreeza](fullname)
+      - [Fatih Bin Ismail](fullname) is my name
+      - [Ahmed Ismail Ahmed Ismail Davood](fullname)
+      - [jashoa migash](fullname)
+      - [dini bal Makail](fullname)
+      - [Izza binti Rafi](fullname)
+      - they call me [Hako darani](fullname)
+      - my full name is [Media Jamalian](fullname)
+      - here is my name [Mahnaz Binti Kamila](fullname)
+      - [Soheil S. ANG](fullname)
+      - [Sara farooki](fullname)
+      - they call me [kamil farahani asil](fullname)
+      - my full name is [Fati binti Mohmed Saleh](fullname)
+      - [SAMAN AHADI](fullname)
+- intent: my_passport_number
+  examples: |
+    - my passport no is [T02381723](passport_number)
+    - my passport No is [122939222](passport_number)
+    - my passport number is [VS1394342](passport_number)
+    - [2392106](passport_number) is my passport no
+    - [TK328U4211](passport_number)
+    - [PK18271602](passport_number)
+    - [K118271201](passport_number)
+    - [192716-29-2121](passport_number)
+    - [L12991327](passport_number)
+    - [102971351](passport_number)
+    - [374661637](passport_number)
+    - [29323203](passport_number) is my passport number
+    - [102172891](passport_number)
+    - my ic number is [292773-29-1929](passport_number)
+    - my malaysian id is [192830-28-4726](passport_number)
+    - IC: [162419-15-1537](passport_number)
+    - [192301-48-8361](passport_number)
+- intent: letter_address
+  examples: |
+    - the letter should be address to : [9B, Jalan Abdul Samad, Kolam Ayer, 80100 Johor Bahru, Johor](address)
+    - the address of letter is [alan Perubatan 1, Pandan Indah, 55100 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur](address)
+    - address: [WILAYAH PERSEKUTUAN, 50350 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur] (address)
+    - should be address to [Jalan Ampang, M-City, 55000 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur](address)
+    - this is the address [2, Jalan Amra, Sentul Selatan, 51000 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur](address)
+    - addres is [20th Floor, Menara Ta One, 22, Jalan P. Ramlee, Kuala Lumpur, 50250 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur](address)
+    - letter of address [No. 972, Jalan Sultan Azlan Shah, Batu 6 1/2, 68100 Kuala Lumpur, Wilayah Persekutuan] (address)
+    - [Vortex @KLCC, 12, Jln Sultan Ismail, Kuala Lumpur, 50250 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur](address) is the address
+    - [A, Lorong Universiti, 50603 Kuala Lumpur, Federal Territory of Kuala Lumpur](address)
+    - [Jalan Hospital, 93586 Kuching, Sarawak](address)
+- intent: my_email
+  examples: |
+    - my email is [maral@gmail.com](email)
+    - [sarah@yahoo.com](email) is my email
+    - [djuna.29@gmail.com] (email)
+    - [wid180729@siswa.um.edu.my](email)
+    - [firda@gmail.com](email)
+    - [linda.182@gmail.com](email)
+    - [dua.lipa@yahoo.com](email) is my email
+- intent: my_matric_number
+  examples: |
+    - my matric no is [17199974/1](matric_number)
+    - [200574/2](matric_number) is my matric number
+    - [1817724/1](matric_number)
+    - [1022343/2](matric_number) matric no
+    - [5002119/1](matric_number)
+    - matric number: [2007242/1](matric_number)
+- regex: fullname
+  examples: |
+   - [a-zA-Z]{3,}(?: [a-zA-Z]+)?(?: [a-zA-Z]+)?(?: [a-zA-Z]+)?(?: [a-zA-Z]+)
+- regex: passport_number
+  examples: |
+    - [A-Z]{1}[0-9]{7,12}
+    - [A-Z]{2}[0-9]{7,12}
+    - \d[A-Za-z0-9]{9}D[^A-Za-z0-9]
+    - [AHKE]\d{8}\D
+    - \d{9}\D
+    - \b\d{9}\b|\b3\d{8}\b
+    - \d{6}\-\d{2}\-\d{4}
+
+- regex: matric_number
+  examples: |
+    - \d{5,8}[/][1,2]
+- regex: address
+  examples: |
+    - (.*?)([\d]*)((?:\s[^\d,]*)*)[\s,]*(\s[\w]*)$
+
+
 
 
 

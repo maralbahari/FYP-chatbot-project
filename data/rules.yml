@@ -12,3 +12,19 @@ rules:
   steps:
   - intent: bot_challenge
   - action: utter_iamabot
+- rule: Activate form for letters
+  steps:
+  - intent: request_letters
+  - action: letter_form
+  - active_loop: letter_form
+- rule: send letter
+  condition:
+  - active_loop: letter_form
+  steps:
+  - action: letter_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_send_letter
+
+

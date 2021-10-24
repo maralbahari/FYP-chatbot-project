@@ -5,6 +5,7 @@ stories:
 - story: happy path
   steps:
   - intent: greet
+  - action: action_hello_world
   - action: utter_greet
   - intent: mood_great
   - action: utter_happy
@@ -16,6 +17,7 @@ stories:
 - story: sad path 1
   steps:
   - intent: greet
+  - action: action_hello_world
   - action: utter_greet
   - intent: mood_unhappy
   - action: utter_cheer_up
@@ -29,6 +31,7 @@ stories:
 - story: sad path 2
   steps:
   - intent: greet
+  - action: action_hello_world
   - action: utter_greet
   - intent: mood_unhappy
   - action: utter_cheer_up
@@ -40,6 +43,7 @@ stories:
 - story: sad path 3
   steps:
   - intent: greet
+  - action: action_hello_world
   - action: utter_greet
   - intent: mood_unhappy
   - action: utter_cheer_up
@@ -129,3 +133,33 @@ stories:
   - action: utter_more_help
   - intent: affirm
   - action: utter_continue
+- story: fullname input
+  steps:
+  - action: utter_ask_fullname
+  - intent: my_full_name
+    entities:
+    - fullname: "Rama Binti Mohammad"
+- story: matric number input
+  steps:
+  - action: utter_ask_matric_number
+  - intent: my_matric_number
+    entities:
+    - matric_number: "2006421/1"
+- story: passport number input
+  steps:
+  - action: utter_ask_passport_number
+  - intent: my_passport_number
+    entities:
+    - passport_number: "Z17281212"
+- story: address input
+  steps:
+  - intent: letter_address
+    entities:
+    - address: "20th Floor, Menara Ta One, 22, Jalan P. Ramlee, Kuala Lumpur, 50250 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur"
+- story: email input
+  steps:
+    - intent: my_email
+      entities:
+        - email: "shamila@gmail.com"
+
+

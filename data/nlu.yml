@@ -245,6 +245,10 @@ nlu:
       - they call me [kamil farahani asil](fullname)
       - my full name is [Fati binti Mohmed Saleh](fullname)
       - [SAMAN AHADI](fullname)
+      - [lee min hoo](fullname)
+      - [ksia wga ska](fullname)
+      - [kim hio ji](fullname)
+      - [famih binti aksia da ajs](fullname)
 - intent: my_passport_number
   examples: |
     - my passport no is [T02381723](passport_number)
@@ -262,6 +266,12 @@ nlu:
     - [102172891](passport_number)
     - my ic number is [292773-29-1929](passport_number)
     - my malaysian id is [192830-28-4726](passport_number)
+    - [927371-74-2812](passport_number)
+    - [1193736473](passport_number)
+    - [271530-21-3816](passport_number)
+    - [NJ19287427](passport_number)
+    - [Q111804232](passport_number)
+    - [236252-46-4827](passport_number)
     - IC: [162419-15-1537](passport_number)
     - [192301-48-8361](passport_number)
 - intent: letter_address
@@ -288,30 +298,26 @@ nlu:
 - intent: my_matric_number
   examples: |
     - my matric no is [17199974/1](matric_number)
-    - [200574/2](matric_number) is my matric number
-    - [1817724/1](matric_number)
-    - [1022343/2](matric_number) matric no
-    - [5002119/1](matric_number)
-    - matric number: [2007242/1](matric_number)
+    - [20057471/2](matric_number) is my matric number
+    - [18177248/1](matric_number)
+    - [12146789/2](matric_number) matric no
+    - [50021196/1](matric_number)
+    - matric number: [20072429/1](matric_number)
+    - [93872615/1](matric_number)
 - regex: fullname
   examples: |
    - [a-zA-Z]{3,}(?: [a-zA-Z]+)?(?: [a-zA-Z]+)?(?: [a-zA-Z]+)?(?: [a-zA-Z]+)
 - regex: passport_number
   examples: |
-    - [A-Z]{1}[0-9]{7,12}
-    - [A-Z]{2}[0-9]{7,12}
-    - \d[A-Za-z0-9]{9}D[^A-Za-z0-9]
-    - [AHKE]\d{8}\D
-    - \d{9}\D
-    - \b\d{9}\b|\b3\d{8}\b
+    - [A-Z0-9<]{9}[0-9]{1}[A-Z]{3}[0-9]{7}[A-Z]{1}[0-9]{7}[A-Z0-9<]{14}[0-9]{2}$
     - \d{6}\-\d{2}\-\d{4}
 
 - regex: matric_number
   examples: |
-    - \d{5,8}[/][1,2]
+    - \d{8}[/][1,2]
 - regex: address
   examples: |
-    - (.*?)([\d]*)((?:\s[^\d,]*)*)[\s,]*(\s[\w]*)$
+    - (.*?)(\d{5,7})\s([a-zA-Z]{1,2}\d+\s?\d+[a-zA-Z]{1,2}|\D*)$
 
 
 

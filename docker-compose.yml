@@ -1,3 +1,4 @@
+version: "3.9"
 services:
   rasa:
     image: rasa/rasa:2.8.8-full
@@ -7,12 +8,17 @@ services:
     - ./:/app
     command:
       - run
+    depends_on:
+      - action_server
   action_server:
     image: rasa/rasa-sdk:2.8.1
     volumes:
     -  ./actions:/app/actions
     ports:
     - 5055:5055
+    build:
+      context: .
+      dockerfile: Dockerfile
   duckling:
     image: rasa/duckling:latest
     volumes:

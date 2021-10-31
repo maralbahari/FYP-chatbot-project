@@ -8,8 +8,8 @@
 # This is a simple example for a custom action which utters "Hello World!"
 import logging
 import re
+import os
 from typing import Any, Text, Dict, List
-
 from rasa.core.actions.forms import FormAction
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
@@ -41,7 +41,7 @@ class ValidateLetterForm(FormValidationAction):
     ) -> List[Text]:
         letter_type=tracker.get_slot("letter")
         if letter_type =="confirmation" or letter_type=="both":
-            return slots_mapped_in_domain+["address"]
+            return ["address"]+slots_mapped_in_domain
         else:
             return slots_mapped_in_domain
     async def extract_address(
@@ -50,16 +50,12 @@ class ValidateLetterForm(FormValidationAction):
         tracker: "Tracker",
         domain: "DomainDict",
     ) -> Dict[Text, Any]:
-        last_intent=tracker.get_intent_of_latest_message(True)
-        slot_address_value=None
-        if last_intent=="letter_address":
-            slot_address_value=tracker.get_slot("address")
-        return {"address":slot_address_value}
+        return {"address":tracker.get_slot("address")}
     def validate_fullname(self,value:Any,dispatcher: "CollectingDispatcher",
         tracker: "Tracker",
         domain: "DomainDict")->Dict[Text,Any]:
-        fullname_regex="[a-zA-Z]{3,}(?: [a-zA-Z]+)?(?: [a-zA-Z]+)?(?: [a-zA-Z]+)?(?: [a-zA-Z]+)"
-        if  (re.search(fullname_regex,value.lower())):
+        fullname_regex=re.compile(r"[a-zA-Z]{3,}(?: [a-zA-Z]+)?(?: [a-zA-Z]+)?(?: [a-zA-Z]+)?(?: [a-zA-Z]+)",re.IGNORECASE)
+        if  (fullname_regex.search(value)):
             return {"fullname":value.lower()}
         else:
             dispatcher.utter_message(text="Please provide valid name")
@@ -67,8 +63,8 @@ class ValidateLetterForm(FormValidationAction):
     def validate_matric_number(self,value:Any,dispatcher: "CollectingDispatcher",
         tracker: "Tracker",
         domain: "DomainDict")->Dict[Text,Any]:
-        matric_number_regex="\d{5,8}[/][1,2]"
-        if re.search(matric_number_regex,value):
+        matric_number_regex=re.compile(r'\d{8}[/][1,2]')
+        if matric_number_regex.search(value):
             return{"matric_number":value}
         else:
             dispatcher.utter_message(text="Please provide valid matric no such as:1729998/1")
@@ -76,31 +72,30 @@ class ValidateLetterForm(FormValidationAction):
     def validate_passport_number(self,value:Any,dispatcher: "CollectingDispatcher",
         tracker: "Tracker",
         domain: "DomainDict")->Dict[Text,Any]:
-        passport_number_regexes=["[A-Z]{2}[0-9]{7,12}","\d[A-Za-z0-9]{9}D[^A-Za-z0-9]","[AHKE]\d{8}\D","[A-Z]{1}[0-9]{7,12}","\d{6}\-\d{2}\-\d{4}","\d{9}\D"]
-        combined = "(" + ")|(".join(passport_number_regexes) + ")"
-        if re.match(combined, value):
+        passport_number_regexes=["[A-Z]{2}[0-9]{8,12}","\d[A-Za-z0-9]{9}D[^A-Za-z0-9]","[AHKE]\d{8}\D","[A-Z]{1}[0-9]{8,12}","\d{6}\-\d{2}\-\d{4}","\d{9}\D"]
+        regex_list=map(re.compile,passport_number_regexes)
+        if any(reg.match(value) for reg in regex_list):
             return {"passport_number",value}
         else:
-            dispatcher.utter_message(text="Please provide valid passport number or IC")
+            dispatcher.utter_message(text="invalid passport number or IC")
             return {"passport_number": None}
     def validate_email(self,value:Any,dispatcher: "CollectingDispatcher",
         tracker: "Tracker",
         domain: "DomainDict")->Dict[Text,Any]:
-        email_regex="\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b"
-        if re.fullmatch(email_regex,value):
-            return {"email",value}
+        email_regex=re.compile(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b")
+        if any(email_regex.fullmatch(part) for part in value):
+            return {"email",str(value)}
         else:
-            dispatcher.utter_message(text="Please provide valid email")
+            dispatcher.utter_message(text="invalid email")
             return {"email": None}
-    def validate_address(self,value:Any,dispatcher: "CollectingDispatcher",
-        tracker: "Tracker",
-        domain: "DomainDict")->Dict[Text,Any]:
-        address_regex="(.*?)([\d]*)((?:\s[^\d,]*)*)[\s,]*(\s[\w]*)$"
-        if re.match(address_regex,value):
-            return {"address",value}
+    def validate_address(self,value:Any,dispatcher,tracker,domain)-> Dict[Text,Any]:
+        complete_add = ''.join(value)
+        address_regex=re.compile(r"(.*?)(\d{5,7})\s([a-zA-Z]{1,2}\d+\s?\d+[a-zA-Z]{1,2}|\D*)$")
+        if address_regex.finditer(complete_add):
+            return {"address":complete_add}
         else:
-            dispatcher.utter_message(text="Please provide valid address")
-            return {"address": None}
+            dispatcher.utter_message(text="invalid address")
+            return {"address":None}
 class SendLetter(Action):
     def name(self) -> Text:
         return "action_send_letter"
@@ -110,5 +105,6 @@ class SendLetter(Action):
         tracker: Tracker,
         domain: "DomainDict",
     ) -> List[Dict[Text, Any]]:
+        tracker.slots_to_validate()
         dispatcher.utter_message(text=f'dear {tracker.get_slot("fullname")} your request for {tracker.get_slot("letter")} is pending \n with matric number:{tracker.get_slot("matric_number")} \n pass:{tracker.get_slot("passport_number")} ')
         return []

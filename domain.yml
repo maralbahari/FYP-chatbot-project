@@ -61,6 +61,9 @@ slots:
   address:
     type: any
     influence_conversation: false
+  required_slot:
+    type: categorical
+    influence_conversation: true
 responses:
   utter_greet:
   - text: Hello! How are you?
@@ -117,6 +120,12 @@ actions:
 - action_send_letter
 forms:
   letter_form:
+    ignored_intents:
+      - affirm
+      - deny
+      - bot_challenge
+      - about_university
+      - location
     required_slots:
       letter:
         - type: from_entity
@@ -125,18 +134,22 @@ forms:
         - type: from_entity
           entity: fullname
           intent: my_full_name
+          not_intent: my_email
       matric_number:
         - type: from_entity
           entity: matric_number
           intent: my_matric_number
+          not_intent: my_passport_number
       passport_number:
         - type: from_entity
           entity: passport_number
           intent: my_passport_number
+          not_intent: my_matric_number
       email:
         - type: from_entity
           entity: email
           intent: my_email
+          not_intent: my_fullname
 
 
 

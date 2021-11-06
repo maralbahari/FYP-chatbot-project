@@ -8,9 +8,9 @@
 # This is a simple example for a custom action which utters "Hello World!"
 import logging
 import re
-import os
+import pandas as pd
+from .ConfirmationLetter import Confirmation
 from typing import Any, Text, Dict, List
-from rasa.core.actions.forms import FormAction
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk import Tracker, FormValidationAction
@@ -79,23 +79,23 @@ class ValidateLetterForm(FormValidationAction):
         else:
             dispatcher.utter_message(text="invalid passport number or IC")
             return {"passport_number": None}
-    def validate_email(self,value:Any,dispatcher: "CollectingDispatcher",
-        tracker: "Tracker",
-        domain: "DomainDict")->Dict[Text,Any]:
-        email_regex=re.compile(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b")
-        if any(email_regex.fullmatch(part) for part in value):
-            return {"email",str(value)}
-        else:
-            dispatcher.utter_message(text="invalid email")
-            return {"email": None}
-    def validate_address(self,value:Any,dispatcher,tracker,domain)-> Dict[Text,Any]:
-        complete_add = ''.join(value)
-        address_regex=re.compile(r"(.*?)(\d{5,7})\s([a-zA-Z]{1,2}\d+\s?\d+[a-zA-Z]{1,2}|\D*)$")
-        if address_regex.finditer(complete_add):
-            return {"address":complete_add}
-        else:
-            dispatcher.utter_message(text="invalid address")
-            return {"address":None}
+    # def validate_email(self,value:Any,dispatcher: "CollectingDispatcher",
+    #     tracker: "Tracker",
+    #     domain: "DomainDict")->Dict[Text,Any]:
+    #     email_regex=re.compile(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b")
+    #     if any(email_regex.fullmatch(part) for part in value):
+    #         return {"email",str(value)}
+    #     else:
+    #         dispatcher.utter_message(text="invalid email")
+    #         return {"email": None}
+    # def validate_address(self,value:Any,dispatcher,tracker,domain)-> Dict[Text,Any]:
+    #     complete_add = ''.join(value)
+    #     address_regex=re.compile(r"(.*?)(\d{5,7})\s([a-zA-Z]{1,2}\d+\s?\d+[a-zA-Z]{1,2}|\D*)$")
+    #     if address_regex.finditer(complete_add):
+    #         return {"address":complete_add}
+    #     else:
+    #         dispatcher.utter_message(text="invalid address")
+    #         return {"address":None}
 class SendLetter(Action):
     def name(self) -> Text:
         return "action_send_letter"
@@ -106,5 +106,8 @@ class SendLetter(Action):
         domain: "DomainDict",
     ) -> List[Dict[Text, Any]]:
         tracker.slots_to_validate()
-        dispatcher.utter_message(text=f'dear {tracker.get_slot("fullname")} your request for {tracker.get_slot("letter")} is pending \n with matric number:{tracker.get_slot("matric_number")} \n pass:{tracker.get_slot("passport_number")} ')
+        if (tracker.get_slot("letter")=="Confirmation"):
+            dispatcher.utter_message(text=f'dear {tracker.get_slot("fullname")} your request for {tracker.get_slot("letter")} is pending \n with matric number:{tracker.get_slot("matric_number")} \n pass:{tracker.get_slot("passport_number")} ')
+            # confirmation_letter=Confirmation(tracker.get_slot("fullname"),tracker.get_slot("matric_number"),tracker.get_slot("passport_number"),tracker.get_slot("address"))
+            # confirmation_letter.send_email(tracker.get_slot("email"))
         return []

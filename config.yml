@@ -10,8 +10,9 @@ pipeline:
      intent_tokenization_flag: True
      intent_split_symbol: "_"
    - name: "RegexFeaturizer"
+     case_sensitive: False
    - name: "DucklingEntityExtractor"
-     url: "http://localhost:8000"
+     url: "http://duckling:8000"
      dimensions: ["email"]
    - name: "LexicalSyntacticFeaturizer"
    - name: "EntitySynonymMapper"
@@ -21,10 +22,12 @@ pipeline:
      min_ngram: 1
      max_ngram: 4
    - name: "CRFEntityExtractor"
-   - name: "DIETClassifier"
-     epochs: 150
-     random_seed: 1
-     entity_recognition: false
+   - name: "embedding_intent_classifier"
+#   - name: "DIETClassifier"
+#     epochs: 150
+#     random_seed: 1
+#     entity_recognition: false
+
 #   - name: "ResponseSelector"
 #     epochs: 100
 #     constrain_similarities: true
@@ -38,12 +41,12 @@ policies:
 # # No configuration for policies was provided. The following default policies were used to train your model.
 # # If you'd like to customize them, uncomment and adjust the policies.
 # # See https://rasa.com/docs/rasa/policies for more information.
+   - name: "RulePolicy"
+     core_fallback_treshold: 0.3
    - name: "MemoizationPolicy"
    - name: "TEDPolicy"
      max_history: 4
      epochs: 100
-   - name: "RulePolicy"
-     core_fallback_treshold: 0.3
 #   - name: "UnexpecTEDIntentPolicy"
 #     max_history: 5
 #     epochs: 100

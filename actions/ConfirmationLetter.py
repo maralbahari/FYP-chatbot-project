@@ -1,7 +1,6 @@
 from __future__ import print_function
 import os
 import re
-
 import pandas as pd
 from googleapiclient.discovery import build
 from google.oauth2 import service_account
@@ -14,18 +13,18 @@ from email.mime.base import MIMEBase
 from email import encoders
 import datetime
 SCOPES = ['https://www.googleapis.com/auth/drive','https://www.googleapis.com/auth/documents','https://www.googleapis.com/auth/drive.file','https://www.googleapis.com/auth/spreadsheets','https://www.googleapis.com/auth/gmail.compose']
+# os.chdir('C://Users//maral//PycharmProjects//FSbot//actions')
 SERVICE_ACCOUNT_FILE="service_key.json"
 class Confirmation():
-    cred = None
     cred = service_account.Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
     service_docs = build('docs', 'v1', credentials=cred)
     service_sheets = build("sheets", "v4", credentials=cred)
     service_drive = build("drive", "v3", credentials=cred)
-    drive_ID=os.environ.get("DRIVE_ID")
-    letter_template_ID=os.environ.get("TEMPLATE_ID")
-    from_email = os.environ.get("MY_EMAIL")
-    my_password=os.environ.get("MY_PASSWORD")
-    student_database_ID=os.environ.get("DB_ID")
+    drive_ID="someid"
+    letter_template_ID="someid"
+    from_email = "email"
+    my_password="pass"
+    student_database_ID="someid"
     student_database = service_sheets.spreadsheets().values().get(spreadsheetId=student_database_ID, range="students database!A1:L13")
     def __init__(self,student_name,student_matric,student_id,letter_address):
         self.student_name=student_name
@@ -84,18 +83,15 @@ class Confirmation():
             str_intake_sem = "I"
         return str_intake_sem, str_intake_year
     def get_addrress_lines(self):
+        complete_add=''.join(self.letter_address)
         postal_regex=re.compile(r"(\d{5,7})")
-        add_line_1_regex=re.compile(r"(.*?)")
         state_regex=re.compile(r"([a-zA-Z]{1,2}\d+\s?\d+[a-zA-Z]{1,2}|\D*)")
         for pattern in self.letter_address:
-            if add_line_1_regex.fullmatch(pattern):
-                add_line_1=pattern
-            elif postal_regex.fullmatch(pattern):
+            if postal_regex.fullmatch(pattern):
                 postal_code=pattern
             elif state_regex.fullmatch(pattern):
                 state_name=pattern
-            else:
-                add_line_1,postal_code,state_name=None
+        add_line_1 = str(complete_add) - str(postal_code) - str(state_name)
         return add_line_1,postal_code,state_name
     def get_sem_number(self,student_detail):
         student_intake_year=student_detail.get("Intake").split(",")[1]

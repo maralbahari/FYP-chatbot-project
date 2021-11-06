@@ -1,13 +1,12 @@
 version: "3.9"
 services:
   rasa:
-    image: rasa/rasa:2.8.8-full
+    image: rasa/rasa:2.8.12-full
     ports:
     - 5005:5005
     volumes:
     - ./:/app
-    command:
-      - run
+    command: shell --d
     depends_on:
       - action_server
   action_server:
@@ -15,13 +14,8 @@ services:
     volumes:
     -  ./actions:/app/actions
     ports:
-    - 5055:5055
-    build:
-      context: .
-      dockerfile: Dockerfile
+      - 5055:5055
   duckling:
     image: rasa/duckling:latest
-    volumes:
-    - ./:/app/config.yml
     ports:
     - 8000:8000

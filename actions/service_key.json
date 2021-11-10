@@ -1,12 +1,1 @@
-{
-  "type": "service_account",
-  "project_id": "fsbotfyp-326910",
-  "private_key_id": "2ec82e57cadadb924117d68addf7db70d7a6eef1",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCJzdMfuFmXikwH\nBS19kX9Bdpxbjb7hZ2hXs64tscjevrmvKszQm7RdpkIZyWfNdN5SUnVzbYe9MI75\niMTdYV62KTZ51mEhEA/JEQL6ATvgEHduN+cJMiE2cpb5MVBvG7rKib1YrRZlkJ+1\no4DKai/Puc0hgz7EPoSaOJW4cxR3WcDnS32lDXGaXv2r+gahJiN5duIwWvWHGdpO\nmdWtmc7ot62tdUXrUAjSdKgTDPpGfDfipzaKppL+NSGAqFikUjd17dtIkpTfZ7Lt\n1lj+AW4JviJrfQ7+WFFcbODmjJAK4KSxSERf1b6xzJ6N9kfs6wOCuFhYkfsMcrst\nlwioMg+rAgMBAAECggEAOvnrsVekgEaf4yFEJsluPQYWRNiVKMKo1WAA222LGklm\nDqGyplT9DFdrUr3vvu6Vd4Xy3kOyJDXz+reeCWDyt+NLfTlSuGO3XcX6ECUXCv4B\nHxqttjHOJQ9FrcB9PBASETyB3MG3JCCROZuQMxDfBXfvYrhY1IQtHBO7gAVAbRNL\nxkkrniB1xbC/r1/ObaNDAQWxMYUIhamWJ5GfJbKpzCCZszZvu4W26sSGIUCeFEYA\n6+AnwE6Qf4NCQFlH3tIHJtW99Z57DzYnD5eB2XZGuPueHRISpnxZko3uLccdu0H1\ntCbw9TZu0TK/V92ABJyQs6/nmguKiB+C62+sHkN4gQKBgQC8vmMH+kvM08Q+7qIZ\nf41UOOFxZwB1j8pH3Xg7Glvugd97RYLcQuSRaHBMxSYMb7nOv4j1uWCiwOv+A6Pk\nwJPgO5ZdPV265npKeBEpKIE+p8ldITCvdr3yMy6zOgNBHvJCXFpnLL3LtJqI15Zh\n4SsuII2wqJ4x1+mnySjbyd3L9wKBgQC66Jt7S7kjVRNSO/X05PoQMuxPt3r5Xq9D\nbR4JpCpP+9oKy7AV9jT5FtGHNU55Z3F1rdeJ+hr/Jw3VCNBjmxLXOFNcD1PzZ1Gt\nVhf5ysQXAGIWHVFXRgrRhEzr2eewKNSsUN7r+/iDyVa8GIoH6CXdHvwc3OcKAvAT\ncDxO6d6k7QKBgB7GdGNSnpVxWihgxLGfqK248JmLD/obTgJVzErmy2KibowtE19S\n0O4ct2LtKn0Qop1hgbV/WpBvIIu0kD62X+ZKEQR3Axd8iSgnV7T8U8ahmSXESany\nlJovWkgDB5DQuPO1F1CHbRMQCbqSXITtMBs/V5scg17hM8oV9MGRssaVAoGAMz23\n+opc/EnDnUTg/j2ULMK5NHWZ2inSJMsSdBQ0oW7rbRBAexTfmvZdhRLhK7lnSprZ\nP3N42UCssx3Se6w08xn3CIMPQeiuZLX4prunHKM3QNbSyPlj1+LMb9Byi0H2ZDNb\nmhifHgohpDmaBeboEoH/Hi6VjJIXnUykzAGjz1UCgYB646yLECP+/TFGq7fc83km\n2yWGXXzXUJVVGPrRaAmUxmGOi4lc78iboF5NGY9wbkF73PRGiZ1NTgNsK3ZcwKIq\nGkhlWVO0d3+0l2oErL0hgG574P0He1z/GT6gNGl90G+jwXeD4BumpNfGLKvh4iTo\n9Y2BjoXd8qnySkPLXG3Biw==\n-----END PRIVATE KEY-----\n",
-  "client_email": "fsbot-2021@fsbotfyp-326910.iam.gserviceaccount.com",
-  "client_id": "113349862928345827287",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/fsbot-2021%40fsbotfyp-326910.iam.gserviceaccount.com"
-}
+some credentialssss
